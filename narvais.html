@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Narwhals Are Awesome! 🦄🐳</title>
+  <style>
+    :root {
+      --bg-top: #0077b6;
+      --bg-bottom: #03045e;
+      --card-bg: rgba(255, 255, 255, 0.12);
+      --accent: #ffd166;
+      --text: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: var(--accent);
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+
+    .narwhal-icon {
+      font-size: 4rem;
+      display: inline-block;
+      animation: swim 3s ease-in-out infinite;
+    }
+
+    @keyframes swim {
+      0%, 100% { transform: translateY(0) rotate(-3deg); }
+      50% { transform: translateY(-10px) rotate(3deg); }
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .lyrics {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      font-style: italic;
+      color: #caf0f8;
+    }
+
+    .lyrics strong {
+      color: var(--accent);
+    }
+
+    button {
+      background-color: var(--accent);
+      color: #03045e;
+      border: none;
+      padding: 0.9rem 1.8rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 1rem;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(255, 209, 102, 0.5);
+    }
+
+    #fact-box {
+      margin-top: 1.2rem;
+      font-size: 1.05rem;
+      min-height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 1rem;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="narwhal-icon">🐳🦄</div>
+      <h1>Narwhals Are Awesome!</h1>
+      <p>O unicórnio subaquático e Jedi do mar</p>
+    </header>
+
+    <section class="card">
+      <div class="video-wrapper">
+        <iframe 
+          src="https://youtube.com" 
+          title="Narwhals Are Awesome : Silly Song : JellyBug" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>🎵 Refrão da Canção</h2>
+      <p class="lyrics">
+        "<strong>Narwhals, narwhals</strong> swimming in the ocean,<br>
+        Causing a commotion, coz they are so awesome!<br>
+        Like an <strong>underwater unicorn</strong>, they've got a massive facial horn,<br>
+        They're the <strong>Jedi of the sea</strong>, they stop Cthulhu eating ye!"
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>❄️ Sabias que...</h2>
+      <div id="fact-box">Clica no botão abaixo para descobrir um facto curioso sobre os narvais!</div>
+      <button onclick="showFact()">Mostrar Curiosidade</button>
+    </section>
+  </div>
+
+  <script>
+    const facts = [
+      "O 'chifre' do narval é, na verdade, um dente canino esquerdo em espiral que pode atingir 3 metros!",
+      "A presa do narval tem milhões de terminações nervosas que detetam alterações na temperatura e salinidade da água.",
+      "Os narvais vivem durante todo o ano nas águas geladas do Ártico e conseguem mergulhar a mais de 1.500 metros.",
+      "Ao contrário de muitas outras baleias, os narvais não têm barbatana dorsal para conseguirem nadar melhor debaixo do gelo.",
+      "A canção original 'Narwhals' foi criada por MrWeebl em 2009 e adaptada para crianças pela JellyBug em 2016."
+    ];
+
+    let currentIndex = -1;
+
+    function showFact() {
+      let nextIndex;
+      do {
+        nextIndex = Math.floor(Math.random() * facts.length);
+      } while (nextIndex === currentIndex);
+      
+      currentIndex = nextIndex;
+      document.getElementById('fact-box').textContent = facts[currentIndex];
+    }
+  </script>
+</body>
+</html>
